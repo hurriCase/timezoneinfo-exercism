@@ -48,11 +48,13 @@ public static class Appointment
             DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById(timeZoneId));
     }
 
-    public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
-    {
-        throw new NotImplementedException("Please implement the (static) Appointment.GetAlertTime() method");
-    }
-
+    public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel) =>
+        alertLevel switch
+        {
+            AlertLevel.Early => appointment - new TimeSpan(1, 0, 0, 0),
+            AlertLevel.Standard => appointment - new TimeSpan(1, 45, 0),
+            AlertLevel.Late => appointment - new TimeSpan(0, 30, 0)
+        };
     public static bool HasDaylightSavingChanged(DateTime dt, Location location)
     {
         throw new NotImplementedException("Please implement the (static) Appointment.HasDaylightSavingChanged() method");
