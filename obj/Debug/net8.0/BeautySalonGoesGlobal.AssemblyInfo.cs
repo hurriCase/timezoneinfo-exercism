@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BeautySalonGoesGlobal")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8673921abdc50907c6088d8b5587eca28f88ab03")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7f6e8ff26993a52b7f7feba37695ec5df82f394f")]
 [assembly: System.Reflection.AssemblyProductAttribute("BeautySalonGoesGlobal")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BeautySalonGoesGlobal")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,4 +1,6 @@
 using System;
+using System.Linq;
+using System.Runtime.InteropServices;
 
 
 public enum Location
@@ -21,7 +23,29 @@ public static class Appointment
 
     public static DateTime Schedule(string appointmentDateDescription, Location location)
     {
-        throw new NotImplementedException("Please implement the (static) Appointment.Schedule() method");
+        string timeZoneId;
+        
+        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
+        {
+            timeZoneId = location switch
+            {
+                Location.NewYork => "Eastern Standard Time",
+                Location.London => "GMT Standard Time",
+                Location.Paris => "W. Europe Standard Time",
+            };
+        }
+        else
+        {
+            timeZoneId = location switch
+            {
+                Location.NewYork => "America/New_York",
+                Location.London => "Europe/London",
+                Location.Paris => "Europe/Paris",
+            };
+        }
+
+        return TimeZoneInfo.ConvertTimeToUtc(
+            DateTime.Parse(appointmentDateDescription), TimeZoneInfo.FindSystemTimeZoneById(timeZoneId));
     }
 
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel)
