@@ -41,7 +41,6 @@ public static class Appointment
                 Location.London => "Europe/London",
                 Location.Paris => "Europe/Paris",
             };
-        }
 
         return TimeZoneInfo.FindSystemTimeZoneById(timeZoneId);
     }
@@ -56,32 +55,9 @@ public static class Appointment
         };
     public static DateTime ShowLocalTime(DateTime dtUtc) => dtUtc.ToLocalTime();
 
-    public static DateTime Schedule(string appointmentDateDescription, Location location)
-    {
-        string timeZoneId;
-        
-        if (RuntimeInformation.IsOSPlatform(OSPlatform.Windows))
-        {
-            timeZoneId = location switch
-            {
-                Location.NewYork => "Eastern Standard Time",
-                Location.London => "GMT Standard Time",
-                Location.Paris => "W. Europe Standard Time",
-            };
-        }
-        else
-        {
-            timeZoneId = location switch
-            {
-                Location.NewYork => "America/New_York",
-                Location.London => "Europe/London",
-                Location.Paris => "Europe/Paris",
-            };
-        }
-
-        return TimeZoneInfo.ConvertTimeToUtc(
+    public static DateTime Schedule(string appointmentDateDescription, Location location) =>
+    TimeZoneInfo.ConvertTimeToUtc(
             DateTime.Parse(appointmentDateDescription), GetTimeZoneId(location));
-    }
 
     public static DateTime GetAlertTime(DateTime appointment, AlertLevel alertLevel) =>
         alertLevel switch
